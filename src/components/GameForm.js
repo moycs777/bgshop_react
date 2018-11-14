@@ -16,16 +16,20 @@ const genres =[
 class GameForm extends React.Component {
 
   state = {
-    name: '',
-    description: '',
-    price: 0,
-    duration: 0,
-    players: '',
-    featured: false,
-    tags: [],
-    genre: 1,
-    publisher: 0,
-    thumbnail: ''
+    data: {
+      name: '',
+      description: '',
+      price: 0,
+      duration: 0,
+      players: '',
+      featured: false,
+      tags: [],
+      genre: 1,
+      publisher: 0,
+      thumbnail: ''
+    },
+    errors: {}
+
   }
 
   handleSubmit = e => {
@@ -34,18 +38,44 @@ class GameForm extends React.Component {
   }
 
   handleStringChange = e =>
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      data: { ...this.state.data, [e.target.name]: e.target.value }
+    });
   handleNumberChange = e =>
-    this.setState({ [e.target.name]: parseInt(e.target.value,10)});
+    this.setState({
+      data: {
+        ...this.state.data,
+        [e.target.name]: parseInt(e.target.value,10)
+      }
+    });
   handleCheckboxChange = e =>
-    this.setState({ [e.target.name]: e.target.checked });
+    this.setState({
+      data: {
+          ...this.state.data,
+          [e.target.name]: e.target.checked
+      }
+    });
   toggleTag = tag =>
-    this.state.tags.includes(tag._id)
-      ? this.setState({ tags: this.state.tags.filter(id => id !== tag._id ) })
-      : this.setState({ tags: [...this.state.tags, tag._id]})
+    this.state.data.tags.includes(tag._id)
+    // this.state.tags.includes(tag._id)
+      ? this.setState({
+        data: {
+          ...this.state.data,
+          tags: this.state.data.tags.filter(id => id !== tag._id )
+        }
+      })
+      : this.setState({
+        data: {
+          ...this.state.data,
+          tags: [...this.state.data.tags, tag._id]
+        }
+      })
+      // ? this.setState({ tags: this.state.tags.filter(id => id !== tag._id ) })
+      // : this.setState({ tags: [...this.state.tags, tag._id]})
   handleGenreChange = genre => {this.setState({ genre: genre._id }); console.log(genre, this.state.genre);};
 
   render(){
+    const { data } = this.state;
     return(
 
         <form className="ui form" onSubmit={this.handleSubmit}>
@@ -61,7 +91,7 @@ class GameForm extends React.Component {
                   id="name"
                   name="name"
                   placeholder="full game title"
-                  value ={this.state.name}
+                  value ={data.name}
                   onChange={this.handleStringChange}
                 />
               </div>
@@ -73,7 +103,7 @@ class GameForm extends React.Component {
                   id="description"
                   name="description"
                   placeholder="full game description"
-                  value ={this.state.description}
+                  value ={data.description}
                   onChange={this.handleStringChange}
                 />
               </div>
@@ -82,7 +112,7 @@ class GameForm extends React.Component {
 
             <div className="four wide column">
               <ReactImageFallback
-                src={this.state.thumbnail}
+                src={data.thumbnail}
                 fallbackImage="http://via.placeholder.com/250x520"
                 alt="thumbnail"
                 className="ui image"
@@ -95,10 +125,10 @@ class GameForm extends React.Component {
             <label htmlFor="name">Game thumbnail</label>
             <input
               type="text"
-              id="name"
-              name="name"
+              id="thumbnail"
+              name="thumbnail"
               placeholder="image url"
-              value ={this.state.thumbnail}
+              value ={data.thumbnail}
               onChange={this.handleStringChange}
             />
           </div>
@@ -110,7 +140,7 @@ class GameForm extends React.Component {
                 type="number"
                 id="price"
                 name="price"
-                value ={this.state.price}
+                value ={data.price}
                 onChange={this.handleNumberChange}
               />
             </div>
@@ -120,7 +150,7 @@ class GameForm extends React.Component {
                 type="number"
                 id="duration"
                 name="duration"
-                value ={this.state.duration}
+                value ={data.duration}
                 onChange={this.handleNumberChange}
               />
             </div>
@@ -130,7 +160,7 @@ class GameForm extends React.Component {
                 type="text"
                 id="players"
                 name="players"
-                value ={this.state.players}
+                value ={data.players}
                 onChange={this.handleStringChange}
               />
             </div>
@@ -141,7 +171,7 @@ class GameForm extends React.Component {
               id="featured"
               name="featured"
               type="checkbox"
-              checked={this.state.featured}
+              checked={data.featured}
               onChange={this.handleCheckboxChange}
             />
             <label htmlFor="featured">Featured?</label>
@@ -155,7 +185,7 @@ class GameForm extends React.Component {
                   <input
                     id={`tag-${tag._id}`}
                     type="checkbox"
-                    checked={this.state.tags.includes(tag._id)}
+                    checked={data.tags.includes(tag._id)}
                     onChange={ () => this.toggleTag(tag)}
                   />
                   <label htmlFor={`tag-${tag._id}`}>{tag.name}</label>
@@ -173,7 +203,7 @@ class GameForm extends React.Component {
                   <input
                     id={`genre-${genre._id}`}
                     type="radio"
-                    checked={this.state.genre === genre._id}
+                    checked={data.genre === genre._id}
                     onChange={() => this.handleGenreChange(genre)}
                   />
                   <label htmlFor={`genre-${genre._id}`}>{genre.name}</label>
@@ -186,7 +216,7 @@ class GameForm extends React.Component {
             <label>Publisher</label>
             <select
               name="publisher"
-              value={this.state.publisher}
+              value={data.publisher}
               onChange={this.handleNumberChange}
             >
               <option value="0">Choose publisher</option>
