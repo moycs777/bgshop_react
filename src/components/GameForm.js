@@ -47,7 +47,7 @@ class GameForm extends React.Component {
 
   render(){
     return(
-      <div>
+
         <form className="ui form" onSubmit={this.handleSubmit}>
 
           <div className="ui grid">
@@ -196,9 +196,14 @@ class GameForm extends React.Component {
             </select>
           </div>
 
-          <button className="ui button" type="submit">Create</button>
+          <div className="ui fluid buttons">
+            <a className="ui button" onClick={this.props.cancel} >Cancel</a>
+            <div className="or">
+            </div >
+            <button className="ui primary button" type="submit">Create</button>
+          </div>
+
         </form>
-      </div>
     );
   }
 }
