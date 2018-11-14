@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactImageFallback from 'react-image-fallback';
 
 const tags = [
   {_id: 1, name: "dice"},
@@ -23,7 +24,8 @@ class GameForm extends React.Component {
     featured: false,
     tags: [],
     genre: 1,
-    publisher: 0
+    publisher: 0,
+    thumbnail: ''
   }
 
   handleSubmit = e => {
@@ -47,26 +49,56 @@ class GameForm extends React.Component {
     return(
       <div>
         <form className="ui form" onSubmit={this.handleSubmit}>
+
+          <div className="ui grid">
+
+            <div className="twelve wide column">
+
+              <div className="field">
+                <label htmlFor="name">Game Title</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="full game title"
+                  value ={this.state.name}
+                  onChange={this.handleStringChange}
+                />
+              </div>
+
+              <div className="field">
+                <label htmlFor="description">Game Description</label>
+                <textarea
+                  type="text"
+                  id="description"
+                  name="description"
+                  placeholder="full game description"
+                  value ={this.state.description}
+                  onChange={this.handleStringChange}
+                />
+              </div>
+
+            </div>
+
+            <div className="four wide column">
+              <ReactImageFallback
+                src={this.state.thumbnail}
+                fallbackImage="http://via.placeholder.com/250x520"
+                alt="thumbnail"
+                className="ui image"
+              />
+            </div>
+
+          </div>
+
           <div className="field">
-            <label htmlFor="name">Game Title</label>
+            <label htmlFor="name">Game thumbnail</label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="full game title"
-              value ={this.state.name}
-              onChange={this.handleStringChange}
-            />
-          </div>
-
-          <div className="field">
-            <label htmlFor="description">Game Description</label>
-            <textarea
-              type="text"
-              id="description"
-              name="description"
-              placeholder="full game description"
-              value ={this.state.description}
+              placeholder="image url"
+              value ={this.state.thumbnail}
               onChange={this.handleStringChange}
             />
           </div>

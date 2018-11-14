@@ -3241,6 +3241,12 @@ fill-range@^4.0.0:
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
 
+filter-invalid-dom-props@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/filter-invalid-dom-props/-/filter-invalid-dom-props-1.0.0.tgz#44d0d0306657b2584e04f71d428229ebb9867ca1"
+  dependencies:
+    html-attributes "1.1.0"
+
 finalhandler@1.1.1:
   version "1.1.1"
   resolved "http://registry.npmjs.org/finalhandler/-/finalhandler-1.1.1.tgz#eebf4ed840079c83f4249038c9d703008301b105"
@@ -3771,6 +3777,10 @@ hsl-regex@^1.0.0:
 hsla-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hsla-regex/-/hsla-regex-1.0.0.tgz#c1ce7a3168c8c6614033a4b5f7877f3b225f9c38"
+
+html-attributes@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/html-attributes/-/html-attributes-1.1.0.tgz#82027a4fac7a6070ea6c18cc3886aea18d6dea09"
 
 html-comment-regex@^1.1.0:
   version "1.1.2"
@@ -6575,7 +6585,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -6766,6 +6776,13 @@ react-dom@^16.6.1:
 react-error-overlay@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.0.tgz#c516995a5652e7bfbed8b497910d5280df74a7e8"
+
+react-image-fallback@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/react-image-fallback/-/react-image-fallback-8.0.0.tgz#18a88c3e011ee683f35fab1dd6e88eb5152b18ec"
+  dependencies:
+    filter-invalid-dom-props "1.0.0"
+    prop-types "^15.5.10"
 
 react-scripts@2.1.1:
   version "2.1.1"
